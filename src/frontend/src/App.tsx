@@ -38,42 +38,36 @@ const SERVICES = [
     title: "Meta Ads",
     description:
       "Precision-targeted Facebook & Instagram campaigns that convert browsers into buyers at scale.",
-    accent: "yellow",
   },
   {
     icon: Globe,
     title: "Social Media Marketing",
     description:
       "Full-spectrum social strategy — content, community management, and growth across every platform.",
-    accent: "magenta",
   },
   {
     icon: Search,
     title: "SEO & Content",
     description:
       "Organic visibility that compounds. We rank your brand for the keywords that drive real revenue.",
-    accent: "yellow",
   },
   {
     icon: TrendingUp,
     title: "Google Ads",
     description:
       "High-intent search and display campaigns optimized for maximum ROI and minimum waste.",
-    accent: "magenta",
   },
   {
     icon: Mail,
     title: "Email Marketing",
     description:
       "Automated email flows and broadcast campaigns that nurture leads and retain customers.",
-    accent: "yellow",
   },
   {
     icon: BarChart3,
     title: "Analytics & Reporting",
     description:
       "Crystal-clear dashboards and actionable reports — no vanity metrics, only decisions that matter.",
-    accent: "magenta",
   },
 ];
 
@@ -140,13 +134,13 @@ function useScrolled() {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const fadeUp: any = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 30 },
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.55,
-      delay: i * 0.1,
+      duration: 0.6,
+      delay: i * 0.08,
       ease: [0.22, 1, 0.36, 1],
     },
   }),
@@ -159,19 +153,19 @@ function Nav({
   const scrolled = useScrolled();
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
         scrolled
-          ? "bg-background/95 backdrop-blur-xl border-b border-border"
+          ? "bg-background/95 backdrop-blur-xl border-b border-border shadow-lg"
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-6 h-18 flex items-center justify-between py-4">
+      <div className="container mx-auto px-6 h-18 flex items-center justify-between py-5">
         {/* Logo */}
-        <a href="#hero" className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 bg-primary flex items-center justify-center rotate-3 group-hover:rotate-6 transition-transform">
-            <Zap className="w-4 h-4 text-primary-foreground" />
+        <a href="#hero" className="flex items-center gap-3 group">
+          <div className="w-8 h-8 bg-primary/10 border border-primary/40 flex items-center justify-center rounded-sm group-hover:bg-primary/20 transition-colors">
+            <Zap className="w-4 h-4 text-primary" />
           </div>
-          <span className="font-display font-black text-xl tracking-tight uppercase">
+          <span className="font-display font-bold text-xl tracking-tight">
             Meta<span className="text-primary">Works</span>
           </span>
         </a>
@@ -183,7 +177,7 @@ function Nav({
               key={link.href}
               href={link.href}
               data-ocid={`nav.${link.label.toLowerCase()}.link`}
-              className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground hover:text-primary transition-colors"
+              className="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground hover:text-primary transition-colors duration-200"
             >
               {link.label}
             </a>
@@ -191,7 +185,7 @@ function Nav({
           <a
             href="#contact"
             data-ocid="nav.get_started.button"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-transparent border-2 border-primary text-primary font-bold text-xs uppercase tracking-widest hover:bg-primary hover:text-primary-foreground transition-all duration-200 glow-yellow"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary/10 border border-primary/40 text-primary font-medium text-xs uppercase tracking-widest hover:bg-primary hover:text-primary-foreground transition-all duration-300 rounded-sm"
           >
             Get Started
           </a>
@@ -200,7 +194,7 @@ function Nav({
         {/* Mobile toggle */}
         <button
           type="button"
-          className="md:hidden p-2 text-primary"
+          className="md:hidden p-2 text-muted-foreground hover:text-primary transition-colors"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
           data-ocid="nav.menu.toggle"
@@ -219,7 +213,7 @@ function Nav({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background/98 backdrop-blur-xl border-b-2 border-primary px-6 pb-6"
+            className="md:hidden bg-background/98 backdrop-blur-xl border-b border-border px-6 pb-6"
           >
             <nav className="flex flex-col gap-5 pt-5">
               {NAV_LINKS.map((link) => (
@@ -227,14 +221,14 @@ function Nav({
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-sm font-black uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
+                  className="text-sm font-medium uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
                 >
                   {link.label}
                 </a>
               ))}
               <button
                 type="button"
-                className="mt-2 px-6 py-3 bg-primary text-primary-foreground font-black text-sm uppercase tracking-widest hover:bg-primary/90 transition-colors w-full"
+                className="mt-2 px-6 py-3 bg-primary text-primary-foreground font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-colors w-full rounded-sm"
                 onClick={() => {
                   setMobileOpen(false);
                   document
@@ -258,22 +252,14 @@ function HeroSection() {
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Funky hero background */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage:
-            "url('/assets/generated/hero-funky-bg.dim_1600x900.jpg')",
-        }}
-      />
-      {/* Dark overlay to keep text readable */}
-      <div className="absolute inset-0 bg-background/75" />
+      {/* Deep atmospheric background */}
+      <div className="absolute inset-0 bg-background" />
       <div className="absolute inset-0 noise-bg" />
 
-      {/* Yellow blob glow top-left */}
-      <div className="absolute top-1/4 left-1/6 w-80 h-80 rounded-full bg-primary/15 blur-[140px] pointer-events-none" />
-      {/* Magenta blob glow bottom-right */}
-      <div className="absolute bottom-1/4 right-1/6 w-64 h-64 rounded-full bg-accent/15 blur-[120px] pointer-events-none" />
+      {/* Subtle radial glow — top center */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full bg-primary/6 blur-[160px] pointer-events-none" />
+      {/* Deep glow bottom */}
+      <div className="absolute bottom-0 right-1/4 w-[600px] h-[400px] rounded-full bg-accent/4 blur-[140px] pointer-events-none" />
 
       <div className="relative z-10 container mx-auto px-6">
         <motion.div
@@ -281,33 +267,33 @@ function HeroSection() {
           animate="visible"
           variants={{
             hidden: {},
-            visible: { transition: { staggerChildren: 0.13 } },
+            visible: { transition: { staggerChildren: 0.12 } },
           }}
-          className="max-w-5xl"
+          className="max-w-4xl"
         >
           {/* Badge */}
           <motion.div variants={fadeUp} custom={0} className="mb-8">
-            <span className="skew-label inline-flex items-center gap-2 px-4 py-1.5 bg-primary/15 border border-primary/50 text-primary text-xs font-bold uppercase tracking-[0.2em]">
-              <span className="w-1.5 h-1.5 bg-primary animate-pulse" />
+            <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/8 border border-primary/25 text-primary text-xs font-medium uppercase tracking-[0.18em] rounded-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse-soft" />
               Meta Blueprint Certified Agency
             </span>
           </motion.div>
 
-          {/* Main headline — chunky stacked display type */}
+          {/* Main headline */}
           <motion.h1
             variants={fadeUp}
             custom={1}
-            className="font-display font-black leading-[0.9] tracking-tight mb-8"
+            className="font-display leading-[1.05] tracking-tight mb-8"
           >
-            <span className="block text-6xl md:text-8xl lg:text-[10rem] uppercase text-foreground">
-              Grow
+            <span className="block text-5xl md:text-7xl lg:text-8xl font-bold text-foreground">
+              Grow Your
             </span>
-            <span className="block text-6xl md:text-8xl lg:text-[10rem] uppercase">
-              <span className="funky-underline text-foreground">Your</span>{" "}
-              <span className="text-primary glow-text-yellow">Brand</span>
+            <span className="block text-5xl md:text-7xl lg:text-8xl font-bold">
+              <span className="text-primary glow-text-gold">Brand</span>
+              <span className="text-foreground"> in the</span>
             </span>
-            <span className="block text-4xl md:text-6xl lg:text-7xl uppercase text-muted-foreground mt-2">
-              in the Digital World
+            <span className="block text-4xl md:text-6xl lg:text-7xl font-normal text-muted-foreground italic mt-1">
+              Digital World
             </span>
           </motion.h1>
 
@@ -326,11 +312,10 @@ function HeroSection() {
             custom={3}
             className="flex flex-col sm:flex-row items-start gap-4"
           >
-            {/* Funky CTA — black fill, thick yellow border */}
             <a
               href="#contact"
               data-ocid="hero.primary_button"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-black text-sm uppercase tracking-widest hover:bg-primary/90 transition-all duration-200 glow-yellow group"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-all duration-300 glow-gold rounded-sm group"
             >
               Start a Project
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -338,7 +323,7 @@ function HeroSection() {
             <a
               href="#results"
               data-ocid="hero.secondary_button"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-foreground/30 text-foreground font-bold text-sm uppercase tracking-widest hover:border-primary hover:text-primary transition-all duration-200"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-transparent border border-border text-foreground font-medium text-sm uppercase tracking-widest hover:border-primary/50 hover:text-primary transition-all duration-300 rounded-sm"
             >
               See Our Work
             </a>
@@ -346,8 +331,8 @@ function HeroSection() {
         </motion.div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <ChevronRight className="w-5 h-5 text-primary rotate-90" />
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+        <ChevronRight className="w-5 h-5 text-muted-foreground rotate-90" />
       </div>
     </section>
   );
@@ -355,10 +340,7 @@ function HeroSection() {
 
 function ServicesSection() {
   return (
-    <section
-      id="services"
-      className="py-28 relative diagonal-divider bg-secondary/40"
-    >
+    <section id="services" className="py-28 bg-secondary/20">
       <div className="container mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -366,55 +348,38 @@ function ServicesSection() {
           viewport={{ once: true, margin: "-80px" }}
           variants={{
             hidden: {},
-            visible: { transition: { staggerChildren: 0.08 } },
+            visible: { transition: { staggerChildren: 0.07 } },
           }}
         >
-          {/* Section label */}
+          {/* Section header */}
           <motion.div variants={fadeUp} className="mb-16">
-            <span className="skew-label inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-black uppercase tracking-[0.2em] mb-4">
+            <p className="text-primary text-xs font-medium uppercase tracking-[0.2em] mb-4">
               What We Do
-            </span>
-            <h2 className="font-display text-5xl md:text-6xl font-black uppercase tracking-tight">
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-foreground">
               Services Built{" "}
-              <span
-                className="text-accent glow-magenta"
-                style={{ textShadow: "0 0 40px oklch(0.68 0.3 340 / 0.6)" }}
-              >
-                for Growth
-              </span>
+              <span className="text-primary italic">for Growth</span>
             </h2>
-            <p className="text-muted-foreground max-w-xl mt-4">
+            <div className="gold-divider w-24 mt-6 mb-0" />
+            <p className="text-muted-foreground max-w-xl mt-5">
               Every service we offer is engineered to deliver measurable results
               for your business.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {SERVICES.map((service, i) => (
               <motion.div
                 key={service.title}
                 variants={fadeUp}
                 custom={i}
                 data-ocid={`services.item.${i + 1}`}
-                whileHover={{ rotate: i % 2 === 0 ? 1.5 : -1.5, scale: 1.02 }}
-                className="funky-card p-6 cursor-default transition-colors duration-300 group"
+                className="premium-card p-7 cursor-default"
               >
-                <div
-                  className={`w-11 h-11 flex items-center justify-center mb-5 ${
-                    service.accent === "yellow"
-                      ? "bg-primary/15 border border-primary/40"
-                      : "bg-accent/15 border border-accent/40"
-                  }`}
-                >
-                  <service.icon
-                    className={`w-5 h-5 ${
-                      service.accent === "yellow"
-                        ? "text-primary"
-                        : "text-accent"
-                    }`}
-                  />
+                <div className="w-10 h-10 bg-primary/10 border border-primary/25 flex items-center justify-center mb-5 rounded-sm">
+                  <service.icon className="w-5 h-5 text-primary" />
                 </div>
-                <h3 className="font-display font-black text-lg uppercase tracking-tight mb-2">
+                <h3 className="font-display font-semibold text-lg tracking-tight mb-2 text-foreground">
                   {service.title}
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
@@ -439,17 +404,19 @@ function AboutSection() {
           viewport={{ once: true, margin: "-80px" }}
           variants={{
             hidden: {},
-            visible: { transition: { staggerChildren: 0.1 } },
+            visible: { transition: { staggerChildren: 0.09 } },
           }}
         >
           <motion.div variants={fadeUp} className="mb-16">
-            <span className="skew-label inline-block px-3 py-1 bg-accent text-accent-foreground text-xs font-black uppercase tracking-[0.2em] mb-4">
+            <p className="text-primary text-xs font-medium uppercase tracking-[0.2em] mb-4">
               Why Us
-            </span>
-            <h2 className="font-display text-5xl md:text-6xl font-black uppercase tracking-tight">
-              The MetaWorks <span className="text-primary">Difference</span>
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight">
+              The MetaWorks{" "}
+              <span className="text-primary italic">Difference</span>
             </h2>
-            <p className="text-muted-foreground max-w-xl mt-4">
+            <div className="gold-divider w-24 mt-6" />
+            <p className="text-muted-foreground max-w-xl mt-5">
               We are not just another agency. Here is what sets us apart.
             </p>
           </motion.div>
@@ -462,10 +429,10 @@ function AboutSection() {
                 custom={i}
                 className="group"
               >
-                <div className="w-14 h-14 bg-primary/10 border-2 border-primary/30 flex items-center justify-center mb-5 group-hover:bg-primary/20 group-hover:border-primary transition-all duration-300 group-hover:rotate-3">
-                  <item.icon className="w-6 h-6 text-primary" />
+                <div className="w-12 h-12 bg-primary/8 border border-primary/20 flex items-center justify-center mb-5 rounded-sm group-hover:bg-primary/15 group-hover:border-primary/40 transition-all duration-300">
+                  <item.icon className="w-5 h-5 text-primary" />
                 </div>
-                <h3 className="font-display font-black text-lg uppercase tracking-tight mb-2">
+                <h3 className="font-display font-semibold text-lg tracking-tight mb-2">
                   {item.title}
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
@@ -484,10 +451,10 @@ function ResultsSection() {
   return (
     <section
       id="results"
-      className="py-28 relative overflow-hidden diagonal-divider bg-secondary/40"
+      className="py-28 relative overflow-hidden bg-secondary/20"
     >
-      {/* Big yellow blur */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-primary/8 blur-[180px] rounded-full pointer-events-none" />
+      {/* Subtle center glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-primary/5 blur-[180px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 container mx-auto px-6">
         <motion.div
@@ -496,34 +463,31 @@ function ResultsSection() {
           viewport={{ once: true, margin: "-80px" }}
           variants={{
             hidden: {},
-            visible: { transition: { staggerChildren: 0.12 } },
+            visible: { transition: { staggerChildren: 0.1 } },
           }}
         >
           <motion.div variants={fadeUp} className="mb-16">
-            <span className="skew-label inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-black uppercase tracking-[0.2em] mb-4">
+            <p className="text-primary text-xs font-medium uppercase tracking-[0.2em] mb-4">
               The Numbers
-            </span>
-            <h2 className="font-display text-5xl md:text-6xl font-black uppercase tracking-tight">
-              Results That{" "}
-              <span className="text-primary glow-text-yellow">Speak</span>
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight">
+              Results That <span className="text-primary italic">Speak</span>
             </h2>
+            <div className="gold-divider w-24 mt-6" />
           </motion.div>
 
-          {/* Staggered giant stat numbers */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 -mx-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border">
             {STATS.map((stat, i) => (
               <motion.div
                 key={stat.label}
                 variants={fadeUp}
                 custom={i}
-                className={`px-4 py-6 border-l-2 border-primary/20 ${
-                  i % 2 === 0 ? "lg:mt-0" : "lg:mt-10"
-                }`}
+                className="bg-background px-8 py-10"
               >
-                <div className="font-display font-black stat-number text-7xl md:text-8xl lg:text-9xl text-primary glow-text-yellow leading-none">
+                <div className="font-display font-bold stat-number text-5xl md:text-6xl lg:text-7xl text-primary glow-text-gold leading-none mb-3">
                   {stat.number}
                 </div>
-                <div className="text-muted-foreground font-bold text-sm uppercase tracking-widest mt-3">
+                <div className="text-muted-foreground text-xs font-medium uppercase tracking-widest">
                   {stat.label}
                 </div>
               </motion.div>
@@ -539,7 +503,7 @@ function StarRating() {
   return (
     <div className="flex gap-0.5">
       {[1, 2, 3, 4, 5].map((n) => (
-        <Star key={n} className="w-4 h-4 text-primary fill-primary" />
+        <Star key={n} className="w-3.5 h-3.5 text-primary fill-primary" />
       ))}
     </div>
   );
@@ -555,40 +519,34 @@ function TestimonialsSection() {
           viewport={{ once: true, margin: "-80px" }}
           variants={{
             hidden: {},
-            visible: { transition: { staggerChildren: 0.1 } },
+            visible: { transition: { staggerChildren: 0.09 } },
           }}
         >
           <motion.div variants={fadeUp} className="mb-16">
-            <span className="skew-label inline-block px-3 py-1 bg-accent text-accent-foreground text-xs font-black uppercase tracking-[0.2em] mb-4">
+            <p className="text-primary text-xs font-medium uppercase tracking-[0.2em] mb-4">
               Testimonials
-            </span>
-            <h2 className="font-display text-5xl md:text-6xl font-black uppercase tracking-tight">
-              What Our{" "}
-              <span
-                className="text-accent"
-                style={{ textShadow: "0 0 40px oklch(0.68 0.3 340 / 0.6)" }}
-              >
-                Clients Say
-              </span>
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight">
+              What Our <span className="text-primary italic">Clients Say</span>
             </h2>
+            <div className="gold-divider w-24 mt-6" />
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {TESTIMONIALS.map((t, i) => (
               <motion.div
                 key={t.name}
                 variants={fadeUp}
                 custom={i}
                 data-ocid={`testimonials.item.${i + 1}`}
-                whileHover={{ rotate: i % 2 === 0 ? 1 : -1 }}
-                className="funky-card p-7 flex flex-col gap-4"
+                className="premium-card p-8 flex flex-col gap-5"
               >
                 <StarRating />
-                <p className="text-foreground/85 text-sm leading-relaxed flex-1">
+                <p className="text-foreground/80 text-sm leading-relaxed flex-1 italic">
                   &ldquo;{t.quote}&rdquo;
                 </p>
-                <div className="border-t border-primary/20 pt-4">
-                  <div className="font-display font-black text-sm uppercase tracking-tight">
+                <div className="border-t border-border pt-5">
+                  <div className="font-display font-semibold text-sm text-foreground">
                     {t.name}
                   </div>
                   <div className="text-muted-foreground text-xs mt-0.5">
@@ -636,40 +594,40 @@ function ContactSection() {
           viewport={{ once: true, margin: "-80px" }}
           variants={{
             hidden: {},
-            visible: { transition: { staggerChildren: 0.1 } },
+            visible: { transition: { staggerChildren: 0.09 } },
           }}
         >
           <motion.div variants={fadeUp} className="mb-14">
-            <span className="skew-label inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-black uppercase tracking-[0.2em] mb-4">
+            <p className="text-primary text-xs font-medium uppercase tracking-[0.2em] mb-4">
               Get In Touch
-            </span>
-            <h2 className="font-display text-5xl md:text-6xl font-black uppercase tracking-tight">
-              Ready to{" "}
-              <span className="text-primary glow-text-yellow">Scale?</span>
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight">
+              Ready to <span className="text-primary italic">Scale?</span>
             </h2>
-            <p className="text-muted-foreground max-w-xl mt-4">
+            <div className="gold-divider w-24 mt-6" />
+            <p className="text-muted-foreground max-w-xl mt-5">
               Tell us about your business and goals. We will get back to you
               within 24 hours.
             </p>
           </motion.div>
 
           <motion.div variants={fadeUp} className="max-w-2xl">
-            <div className="funky-card p-8 md:p-10">
+            <div className="premium-card p-8 md:p-10">
               <AnimatePresence mode="wait">
                 {status === "success" ? (
                   <motion.div
                     key="success"
-                    initial={{ opacity: 0, scale: 0.9 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
                     data-ocid="contact.success_state"
                     className="text-center py-12"
                   >
-                    <div className="w-16 h-16 bg-primary flex items-center justify-center mx-auto mb-5 rotate-3">
-                      <CheckCircle2 className="w-8 h-8 text-primary-foreground" />
+                    <div className="w-14 h-14 bg-primary/10 border border-primary/30 flex items-center justify-center mx-auto mb-5 rounded-sm">
+                      <CheckCircle2 className="w-7 h-7 text-primary" />
                     </div>
-                    <h3 className="font-display text-2xl font-black uppercase mb-3">
-                      Message Sent!
+                    <h3 className="font-display text-2xl font-bold mb-3">
+                      Message Sent
                     </h3>
                     <p className="text-muted-foreground mb-6">
                       Thanks for reaching out. We will be in touch within 24
@@ -678,7 +636,7 @@ function ContactSection() {
                     <button
                       type="button"
                       onClick={() => setStatus("idle")}
-                      className="px-6 py-3 border-2 border-primary text-primary font-bold text-sm uppercase tracking-widest hover:bg-primary hover:text-primary-foreground transition-all"
+                      className="px-6 py-3 border border-primary/40 text-primary font-medium text-sm uppercase tracking-widest hover:bg-primary hover:text-primary-foreground transition-all rounded-sm"
                     >
                       Send Another Message
                     </button>
@@ -696,7 +654,7 @@ function ContactSection() {
                       <div className="space-y-2">
                         <Label
                           htmlFor="contact-name"
-                          className="text-xs font-bold uppercase tracking-widest"
+                          className="text-xs font-medium uppercase tracking-widest text-muted-foreground"
                         >
                           Name
                         </Label>
@@ -709,13 +667,13 @@ function ContactSection() {
                           }
                           required
                           data-ocid="contact.input"
-                          className="bg-secondary/60 border-border focus:border-primary focus:ring-1 focus:ring-primary transition-colors rounded-none"
+                          className="bg-secondary/50 border-border focus:border-primary/60 focus:ring-1 focus:ring-primary/40 transition-colors rounded-sm"
                         />
                       </div>
                       <div className="space-y-2">
                         <Label
                           htmlFor="contact-email"
-                          className="text-xs font-bold uppercase tracking-widest"
+                          className="text-xs font-medium uppercase tracking-widest text-muted-foreground"
                         >
                           Email
                         </Label>
@@ -729,7 +687,7 @@ function ContactSection() {
                           }
                           required
                           data-ocid="contact.search_input"
-                          className="bg-secondary/60 border-border focus:border-primary focus:ring-1 focus:ring-primary transition-colors rounded-none"
+                          className="bg-secondary/50 border-border focus:border-primary/60 focus:ring-1 focus:ring-primary/40 transition-colors rounded-sm"
                         />
                       </div>
                     </div>
@@ -737,7 +695,7 @@ function ContactSection() {
                     <div className="space-y-2">
                       <Label
                         htmlFor="contact-message"
-                        className="text-xs font-bold uppercase tracking-widest"
+                        className="text-xs font-medium uppercase tracking-widest text-muted-foreground"
                       >
                         Message
                       </Label>
@@ -751,14 +709,14 @@ function ContactSection() {
                         }
                         required
                         data-ocid="contact.textarea"
-                        className="bg-secondary/60 border-border focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none rounded-none"
+                        className="bg-secondary/50 border-border focus:border-primary/60 focus:ring-1 focus:ring-primary/40 transition-colors resize-none rounded-sm"
                       />
                     </div>
 
                     {status === "error" && (
                       <p
                         data-ocid="contact.error_state"
-                        className="text-destructive text-sm font-medium"
+                        className="text-destructive text-sm"
                       >
                         Something went wrong. Please try again.
                       </p>
@@ -768,7 +726,7 @@ function ContactSection() {
                       type="submit"
                       disabled={status === "loading"}
                       size="lg"
-                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-black uppercase tracking-widest rounded-none glow-yellow text-sm"
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold uppercase tracking-widest rounded-sm glow-gold text-sm"
                       data-ocid="contact.submit_button"
                     >
                       {status === "loading" ? (
@@ -799,15 +757,15 @@ function Footer() {
   const hostname =
     typeof window !== "undefined" ? window.location.hostname : "";
   return (
-    <footer className="border-t-2 border-primary/30 py-12 bg-secondary/20">
+    <footer className="border-t border-border py-14 bg-secondary/10">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
           <div>
-            <div className="flex items-center gap-2.5 mb-5">
-              <div className="w-8 h-8 bg-primary flex items-center justify-center rotate-3">
-                <Zap className="w-4 h-4 text-primary-foreground" />
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-8 h-8 bg-primary/10 border border-primary/30 flex items-center justify-center rounded-sm">
+                <Zap className="w-4 h-4 text-primary" />
               </div>
-              <span className="font-display font-black text-xl uppercase tracking-tight">
+              <span className="font-display font-bold text-xl tracking-tight">
                 Meta<span className="text-primary">Works</span>
               </span>
             </div>
@@ -818,7 +776,7 @@ function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-black text-xs uppercase tracking-[0.2em] text-primary mb-5">
+            <h4 className="text-xs font-medium uppercase tracking-[0.2em] text-primary mb-5">
               Quick Links
             </h4>
             <ul className="space-y-3">
@@ -826,7 +784,7 @@ function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-muted-foreground hover:text-primary text-sm font-medium transition-colors uppercase tracking-wide"
+                    className="text-muted-foreground hover:text-primary text-sm transition-colors uppercase tracking-wide"
                   >
                     {link.label}
                   </a>
@@ -836,7 +794,7 @@ function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-black text-xs uppercase tracking-[0.2em] text-primary mb-5">
+            <h4 className="text-xs font-medium uppercase tracking-[0.2em] text-primary mb-5">
               Follow Us
             </h4>
             <div className="flex gap-3">
@@ -845,33 +803,33 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="w-10 h-10 border-2 border-border hover:border-primary hover:text-primary flex items-center justify-center text-muted-foreground transition-all"
+                className="w-9 h-9 border border-border hover:border-primary/50 hover:text-primary flex items-center justify-center text-muted-foreground transition-all rounded-sm"
               >
-                <SiFacebook className="w-4 h-4" />
+                <SiFacebook className="w-3.5 h-3.5" />
               </a>
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="w-10 h-10 border-2 border-border hover:border-accent hover:text-accent flex items-center justify-center text-muted-foreground transition-all"
+                className="w-9 h-9 border border-border hover:border-primary/50 hover:text-primary flex items-center justify-center text-muted-foreground transition-all rounded-sm"
               >
-                <SiInstagram className="w-4 h-4" />
+                <SiInstagram className="w-3.5 h-3.5" />
               </a>
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="w-10 h-10 border-2 border-border hover:border-primary hover:text-primary flex items-center justify-center text-muted-foreground transition-all"
+                className="w-9 h-9 border border-border hover:border-primary/50 hover:text-primary flex items-center justify-center text-muted-foreground transition-all rounded-sm"
               >
-                <SiLinkedin className="w-4 h-4" />
+                <SiLinkedin className="w-3.5 h-3.5" />
               </a>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-border/50 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="border-t border-border/40 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-muted-foreground text-sm">
             &copy; {year} MetaWorks. All rights reserved.
           </p>

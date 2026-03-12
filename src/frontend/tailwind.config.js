@@ -16,8 +16,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Mona Sans", "sans-serif"],
-        sans: ["Outfit", "sans-serif"],
+        display: ["Playfair Display", "serif"],
+        sans: ["General Sans", "sans-serif"],
       },
       colors: {
         border: "oklch(var(--border))",
@@ -78,8 +78,8 @@ export default {
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
-        "glow-yellow": "0 0 40px oklch(0.88 0.22 95 / 0.45)",
-        "glow-magenta": "0 0 40px oklch(0.68 0.3 340 / 0.4)",
+        "glow-gold": "0 0 40px oklch(0.78 0.14 75 / 0.35)",
+        "card-hover": "0 12px 48px oklch(0 0 0 / 0.5), 0 0 30px oklch(0.78 0.14 75 / 0.06)",
       },
       keyframes: {
         "accordion-down": {
@@ -91,24 +91,19 @@ export default {
           to: { height: "0" },
         },
         "fade-up": {
-          from: { opacity: "0", transform: "translateY(30px)" },
+          from: { opacity: "0", transform: "translateY(24px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
-        shimmer: {
-          "0%": { backgroundPosition: "-200% center" },
-          "100%": { backgroundPosition: "200% center" },
-        },
-        wiggle: {
-          "0%, 100%": { transform: "rotate(-2deg)" },
-          "50%": { transform: "rotate(2deg)" },
+        "pulse-soft": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.5" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-up": "fade-up 0.6s ease-out forwards",
-        shimmer: "shimmer 3s linear infinite",
-        wiggle: "wiggle 1s ease-in-out infinite",
+        "pulse-soft": "pulse-soft 2.5s ease-in-out infinite",
       },
     },
   },
